@@ -10,6 +10,11 @@
   --app-teal:#3fc7bd;
   --app-add:#4caf7d;
   --app-flag:#e0785a;
+  --person-a:#3fc7bd;
+  --person-b:#e0785a;
+  --person-c:#4caf7d;
+  --person-d:#9d7fe0;
+  --person-e:#e0c23f;
 }
 
 *{box-sizing:border-box}
@@ -50,8 +55,13 @@ body.app{margin:0;background:var(--app-bg);color:var(--app-text);font-family:Int
 .pill{font-size:12px;padding:5px 10px;border-radius:20px;background:var(--app-panel);border:1px solid var(--app-line);color:var(--app-muted)}
 .pill b{color:var(--app-text);font-weight:600}
 .members{display:flex;gap:14px;flex-wrap:wrap}
-.member{display:flex;align-items:center;gap:8px;font-size:13px}
-.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#0b0f13}
+.member{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--app-muted)}
+.avatar{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;font-size:11.5px;font-weight:700;font-style:normal;color:#0b0f13;flex:none;vertical-align:middle;margin-right:2px}
+.person-a{background:var(--person-a)}
+.person-b{background:var(--person-b)}
+.person-c{background:var(--person-c)}
+.person-d{background:var(--person-d)}
+.person-e{background:var(--person-e)}
 .idea-box{background:var(--app-panel);border:1px solid var(--app-line);border-radius:8px;padding:14px 16px;font-size:13.5px;line-height:1.65;color:var(--app-text)}
 .stage-progress{display:flex;gap:8px;margin-top:16px}
 .stage-progress span{flex:1;height:6px;border-radius:4px;background:var(--app-line)}
@@ -71,13 +81,28 @@ body.app{margin:0;background:var(--app-bg);color:var(--app-text);font-family:Int
 .score-note{margin-top:14px;padding-top:12px;border-top:1px solid var(--app-line);font-size:12.5px;color:var(--app-muted)}
 
 /* feature tree */
-.tree{list-style:none;margin:0;padding:0}
-.tree>li{margin-bottom:14px}
-.tree-feature{display:flex;align-items:center;gap:8px;font-weight:600;font-size:13.5px}
+.card-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:4px}
+.card-head-row .card-sub{margin-bottom:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--app-muted)}
+
 .demo-critical{font-size:10px;font-weight:700;color:#0b0f13;background:var(--app-teal);padding:2px 7px;border-radius:20px}
-.tree ul{list-style:none;margin:8px 0 0;padding-left:18px;border-left:1px solid var(--app-line);display:flex;flex-direction:column;gap:6px}
-.tree ul li{font-size:12.5px;color:var(--app-muted)}
-.archetype{font-size:10.5px;color:var(--app-teal);margin-left:6px}
+.archetype{display:block;margin-top:3px;font-size:10px;font-style:normal;color:var(--app-teal)}
+
+.tree-diagram{margin-top:22px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--app-line) transparent}
+.tree-diagram::-webkit-scrollbar{height:6px}
+.tree-diagram::-webkit-scrollbar-thumb{background:var(--app-line);border-radius:4px}
+.tree-root{width:fit-content;margin:0 auto;padding:8px 18px;border:1px solid var(--app-teal);border-radius:20px;font-size:12.5px;font-weight:600;color:var(--app-teal);background:rgba(63,199,189,.08)}
+.tree-trunk{width:2px;height:22px;background:var(--app-line);margin:0 auto}
+.tree-branches{display:flex;gap:18px;position:relative;padding-top:22px;min-width:max-content;justify-content:center}
+.tree-branches::before{content:"";position:absolute;top:0;left:130px;right:130px;height:2px;background:var(--app-line)}
+.branch{position:relative;flex:0 0 240px;padding-top:22px}
+.branch::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:22px;background:var(--app-line)}
+.branch-feature{font-size:12.5px;font-weight:600;padding:10px 12px;border:1px solid var(--app-line);border-radius:8px;background:var(--app-panel);display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:40px}
+.branch-leaves{position:relative;margin:16px 0 0 10px;padding-left:18px;border-left:2px solid var(--app-line);display:flex;flex-direction:column;gap:12px}
+.leaf{position:relative;display:flex;align-items:flex-start;gap:8px;font-size:11.5px;color:var(--app-muted);line-height:1.4}
+.leaf::before{content:"";position:absolute;left:-18px;top:12px;width:16px;height:2px;background:var(--app-line)}
+.leaf-body{padding-top:3px}
 
 .rationale ul{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px}
 .rationale code{font-size:12px;background:var(--app-panel);padding:2px 6px;border-radius:4px}
