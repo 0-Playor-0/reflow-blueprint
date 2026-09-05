@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ReFlow — proof of concept</title>
+<link rel="stylesheet" href="product.css">
+</head>
+<body class="app">
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <div class="app-logo">Re<span>Flow</span></div>
+    <nav class="app-nav">
+      <button data-tab="overview" class="active" type="button">Overview</button>
+      <button data-tab="ideation" type="button">Ideation</button>
+      <button data-tab="planning" type="button">Planning</button>
+      <button data-tab="review" type="button">Review</button>
+      <button data-tab="analytics" type="button">Analytics</button>
+    </nav>
+    <a class="app-back" href="index.html">&larr; Back to blueprint</a>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>ReFlow, run on ReFlow</h1>
+        <p>The most honest example we could show judges: our own hackathon project, put through the tool it built. This is a static proof-of-concept walkthrough, not a live backend.</p>
+      </div>
+      <span class="poc-badge">Proof of concept — mocked data</span>
+    </div>
+
+    <section id="tab-overview" class="tab active">
+      <div class="card">
+        <h2>Team session</h2>
+        <p class="card-sub">Created once, at setup, via invite code <span class="mono">RFLW-92K</span></p>
+        <div class="session-meta">
+          <span class="pill">Repo: <b>0-Playor-0/reflow-blueprint</b></span>
+          <span class="pill">Hackathon type: <b>General / build track</b></span>
+          <span class="pill">Time remaining at last check: <b>14h</b></span>
+        </div>
+        <div class="members">
+          <div class="member"><span class="avatar" style="background:#3fc7bd">J</span>Jae · full-stack</div>
+          <div class="member"><span class="avatar" style="background:#e0785a">S</span>Sam · frontend</div>
+          <div class="member"><span class="avatar" style="background:#4caf7d">P</span>Priya · backend / infra</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>The idea</h2>
+        <p class="card-sub">What got pasted in at setup — Ideation parses this against the rubric</p>
+        <div class="idea-box">A four-stage tool that takes a hackathon team from idea to judging: score the idea against the real rubric, split work by real GitHub skill signals, rehearse judge questions grounded in the actual codebase, and export an activity log — all hanging off one shared team session instead of four disconnected tools.</div>
+        <div class="stage-progress" aria-hidden="true">
+          <span class="done"></span><span class="done"></span><span class="done"></span><span></span>
+        </div>
+        <p class="card-sub" style="margin:10px 0 0">Ideation → Planning → Review complete. Analytics running on current commit history.</p>
+      </div>
+    </section>
+
+    <section id="tab-ideation" class="tab">
+      <div class="card">
+        <h2>Rubric</h2>
+        <p class="card-sub">Source: pasted text, no explicit weights on 2 of 5 criteria — inferred from the "general build track" defaults library, shown here editable</p>
+        <table class="rubric-table">
+          <thead><tr><th>Criterion</th><th>Weight</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>Technical execution</td><td>30%</td><td><span class="tag">from rubric</span></td></tr>
+            <tr><td>Innovation</td><td>25%</td><td><span class="tag">from rubric</span></td></tr>
+            <tr><td>Impact / usefulness</td><td>20%</td><td><span class="tag inferred">inferred</span></td></tr>
+            <tr><td>Presentation</td><td>15%</td><td><span class="tag inferred">inferred</span></td></tr>
+            <tr><td>Completion</td><td>10%</td><td><span class="tag">from rubric</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Gap list</h2>
+        <p class="card-sub">The primary output — the score below is context, not the finding</p>
+        <ul class="gap-list">
+          <li><b>&minus;</b> No automated tests around the Hungarian-algorithm assignment step <i>(technical execution)</i> — fix: add unit tests before demo, or say so plainly if asked</li>
+          <li><b>&minus;</b> Analytics confidence badges on this page are mocked, not wired to real git history yet <i>(completion)</i> — fix: label this page as proof of concept, which it is</li>
+          <li><b>&minus;</b> Background job priority lanes described in the pitch haven't been load-tested <i>(technical execution)</i> — fix: note it as a known limitation rather than overclaiming</li>
+        </ul>
+        <div class="score-note">Score: 74 / 100 — for context. The gap list above is what we'd actually act on before demo.</div>
+      </div>
+    </section>
+
+    <section id="tab-planning" class="tab">
+      <div class="card">
+        <h2>Feature tree</h2>
+        <p class="card-sub">4–7 top-level features, one demo-critical, each expanded into leaf subtasks against a fixed archetype taxonomy</p>
+        <ul class="tree">
+          <li>
+            <div class="tree-feature">Rubric ingestion &amp; scoring <span class="demo-critical">demo-critical</span></div>
+            <ul>
+              <li>Parse pasted / URL / PDF rubric <span class="archetype">parsing</span></li>
+              <li>Structured extraction against a strict schema <span class="archetype">LLM-integration</span></li>
+              <li>Defaults-library fallback, editable inline <span class="archetype">data</span></li>
+              <li>Per-criterion scoring calls <span class="archetype">LLM-integration</span></li>
+            </ul>
+          </li>
+          <li>
+            <div class="tree-feature">Feature tree generation</div>
+            <ul>
+              <li>Two-pass idea → features → subtasks <span class="archetype">LLM-integration</span></li>
+              <li>Archetype classification, depth capped <span class="archetype">data</span></li>
+            </ul>
+          </li>
+          <li>
+            <div class="tree-feature">GitHub skill mapping</div>
+            <ul>
+              <li>Language bytes + dependency manifests <span class="archetype">integration</span></li>
+              <li>Recency-decayed commit history <span class="archetype">data</span></li>
+              <li>Self-declared checklist (primary path) <span class="archetype">UI</span></li>
+            </ul>
+          </li>
+          <li>
+            <div class="tree-feature">Task assignment</div>
+            <ul>
+              <li>Hungarian-algorithm cost matrix <span class="archetype">algorithm</span></li>
+              <li>Per-person capacity buffer <span class="archetype">algorithm</span></li>
+              <li>One-line rationale per assignment <span class="archetype">UI</span></li>
+            </ul>
+          </li>
+          <li>
+            <div class="tree-feature">Repo-grounded review <span class="demo-critical">demo-critical</span></div>
+            <ul>
+              <li>Syntax-aware chunking <span class="archetype">parsing</span></li>
+              <li>Deliberate question targeting <span class="archetype">algorithm</span></li>
+              <li>README-vs-code claim checking <span class="archetype">LLM-integration</span></li>
+            </ul>
+          </li>
+          <li>
+            <div class="tree-feature">Attribution &amp; analytics</div>
+            <ul>
+              <li>Multi-method attribution, priority order <span class="archetype">algorithm</span></li>
+              <li>Confidence tagging per attribution <span class="archetype">data</span></li>
+              <li>"Needs interpretation" framing in UI <span class="archetype">UI</span></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card rationale">
+        <h2>Assignment rationale</h2>
+        <ul>
+          <li><code>repo-grounded review</code> → <b>Jae</b><span class="fit">fit 0.86, capacity ok</span></li>
+          <li><code>feature tree generation</code> → <b>Sam</b><span class="fit">fit 0.52 — Priya scored 0.79 but was already at capacity on infra</span></li>
+          <li><code>attribution &amp; analytics</code> → <b>Priya</b><span class="fit">fit 0.71, capacity ok</span></li>
+        </ul>
+        <div class="cutline"><b>Feasibility cut:</b> drop a planned "PDF export theming" pass — saves 3 hours, costs 2 rubric points on presentation</div>
+      </div>
+    </section>
+
+    <section id="tab-review" class="tab">
+      <div class="card">
+        <h2>Judge questions</h2>
+        <p class="card-sub">Generated against this repo's actual files — every question cites where it came from</p>
+        <div class="question">
+          <p>"Your comparison table calls the review syntax-aware — where's the tree-sitter integration in this repo?"</p>
+          <pre><code>README.md:1  # reflo-blueprint</code></pre>
+        </div>
+        <div class="question">
+          <p>"The hero example — the 5-second-poll finding — is that from a real run of Review, or a mockup?"</p>
+          <pre><code>index.html:28  what the Review stage actually finds</code></pre>
+        </div>
+        <div class="question">
+          <p>"This page labels itself a proof of concept in three places — what's actually wired up versus described?"</p>
+          <pre><code>product.html:24  Proof of concept — mocked data</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-analytics" class="tab">
+      <div class="card">
+        <h2>Activity log</h2>
+        <p class="card-sub">Needs human interpretation — not a fairness score</p>
+        <ul class="attribution-list">
+          <li><code>style.css</code> token system → <b>Priya</b><span class="conf high">branch match · high confidence</span></li>
+          <li><code>product.html</code> mockup → <b>Sam</b><span class="conf high">task reference in commit · high confidence</span></li>
+          <li><code>compare.html</code> copy pass → <b>unclear</b><span class="conf low">LLM classification · low confidence</span></li>
+        </ul>
+        <p class="caveat">Pairing, debugging someone else's code, design decisions made out loud, and demo rehearsal don't show up here. Treat this as a conversation starter for the team, not a scoreboard — same as it would be for any team using ReFlow for real.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.app-nav button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.app-nav button').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
